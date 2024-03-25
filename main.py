@@ -1,6 +1,5 @@
+import sys 
 import random
-from pyscript import document
-from pyscript import when
 
 # Dictionary of all of the possible outcome 
 combinations = {
@@ -17,29 +16,24 @@ combinations = {
 
 games_result = []
 
+# Takes user input and use random.randint for computer move
+def user_input():
+    user_move = input(("Enter a number :\n1.Rock\n2.Paper\n3.Scissors"))
+    computer_move = random.randint(1,3)
+    decide_winner(user_move, computer_move)
+    
 # Access combinations key to output the winner
-
-def rock():
-    games_result.append(str(1))
-    games_result.append(str(random.randint(1,3)))
-    games_result_converted = "".join(games_result)
-    output_div = document.querySelector("#output")
-    output_div.innerText = combinations[int(games_result_converted)]
-
-
-def paper():
-    games_result.append(str(2))
-    games_result.append(str(random.randint(1,3)))
+def decide_winner(x, y):
+    games_result.append(str(x))
+    games_result.append(str(y))
     games_result_converted = "".join(games_result)
     print(combinations[int(games_result_converted)])
-    output_div = document.querySelector("#output")
-    output_div.innerText = combinations[int(games_result_converted)]
+    
 
 
-def scissors():
-    games_result.append(str(3))
-    games_result.append(str(random.randint(1,3)))
-    games_result_converted = "".join(games_result)
-    print(combinations[int(games_result_converted)])
-    output_div = document.querySelector("#output")
-    output_div.innerText = combinations[int(games_result_converted)]
+choice = int(input("Do you want to play\nEnter a number\n1. Yes\n2. No"))
+
+if choice == 1:
+    user_input()
+else:
+    sys.exit()
